@@ -1,0 +1,60 @@
+---
+title: "数学表达式"
+author: "wmj"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: 
+    latex_engine: xelatex
+    number_sections: yes
+    df_print: kable
+linkcolor: red
+urlcolor: red
+header-includes:
+  - \usepackage[fontset = fandol]{ctex}
+  - \usepackage{amsmath, amssymb}
+  - \usepackage{booktabs}
+  - \usepackage{tabularx}
+  - \usepackage{graphicx}
+  - \usepackage{float}
+  - \usepackage{geometry}
+  - \geometry{margin=1in}
+  - \usepackage{indentfirst}\setlength{\parindent}{2em}
+classoptions: "hyperref, 12pt, a4paper"
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo         = TRUE,
+  eval         = FALSE,
+  message      = FALSE,
+  warning      = FALSE,
+  out.width    = "100%",
+  fig.asp      = 0.618,
+  fig.width    = 5,
+  fig.show     = "hold",
+  fig.pos      = "H",
+  fig.align    = "center",
+  fig.showtext = TRUE,
+  dev          = "ragg_png",
+  dpi          = 600
+)
+
+options(digits = 3)
+```
+
+
+
+# 模型
+
+这是一个二分类 Logistic 回归模型：
+
+$$
+y_i \sim \operatorname{Bernoulli}(p_i)
+$$
+
+$$
+\operatorname{logit}(p_i)=\alpha + \mathbf{x}_i^\top \boldsymbol{\beta}
+$$
+
