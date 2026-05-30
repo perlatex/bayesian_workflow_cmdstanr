@@ -112,7 +112,7 @@ beta_draws
 X <- d %>% select(x1, x2, x3) 
 
 beta_draws <- fit %>%
-  spread_draws(beta[k]) %>%
+  tidybayes::spread_draws(beta[k]) %>%
   mutate(term = colnames(X)[k])
 
 beta_draws %>%
@@ -127,10 +127,13 @@ beta_draws %>%
 
 beta_draws %>%
   ggplot(aes(x = beta, y = term)) +
-  stat_halfeye() +
+  ggdist::stat_halfeye() +
   geom_vline(xintercept = 0, linetype = 2) +
   theme_minimal(base_size = 14)
 ######################################################################
+
+
+
 
 
 ######################################################################
@@ -138,10 +141,10 @@ beta_draws %>%
 draws_array <- fit$draws(
   variables = c("alpha", "beta")
 )
-mcmc_trace(draws_array)
+bayesplot::mcmc_trace(draws_array)
 
 
-mcmc_intervals(
+bayesplot::mcmc_intervals(
   draws_array,
   pars = c("alpha", "beta[1]", "beta[2]", "beta[3]")
 )
@@ -165,11 +168,18 @@ yrep <- fit$draws("y_rep", format = "draws_matrix")
 
 dim(yrep)
 
+# bayesplot::ppc_dens_overlay(
+#   y    = d$y,
+#   yrep = yrep[1:100, ]
+# )
+
 bayesplot::ppc_bars(
-  y = d$y,
+  y    = d$y,
   yrep = yrep[1:100, ]
 )
 ######################################################################
+
+
 
 
 ######################################################################
